@@ -1,0 +1,31 @@
+@startuml
+abstract class Context{
+- state_info
+- current_state
+- states: State[]
++ get_state():State
++ add_state(State):None
++ change_state(State):None
++ set_state_info(state_info):None
++ get_state_info():state_info
+}
+note bottom:上下文
+abstract class State{
+- name:str
++ is_match(state_info):bool
++ behavior():None
++ get_name():str
+}
+note bottom:状态
+class ContextImpl{
+}
+note bottom:上下文实现类
+class StateImpl{
++ is_match(state_info):bool
++ behavior():None
+}
+note bottom:状态实现类
+StateImpl -|> State
+ContextImpl -|> Context
+State -* Context
+@enduml

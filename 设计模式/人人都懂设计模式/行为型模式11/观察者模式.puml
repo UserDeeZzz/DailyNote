@@ -1,26 +1,25 @@
 @startuml
-
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+abstract class Observable{
+- _observers: Observer
++ add(Observer): Observer
++ remove(Observer): None
++ notify():None
 }
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+note bottom:被观察者抽象类
+class ObservableImpl{
+- data: int
++ change(int):None
 }
-
+note bottom:被观察者实现类
+abstract class Observer{
++ update(Observable,str):None
+}
+note bottom:观察者抽象类
+class ObserverImpl{
+}
+note bottom:观察者实现类
+ObservableImpl -|> Observable
+ObserverImpl -|> Observer
+Observer -* Observable
+ObserverImpl "订阅"-> ObservableImpl
 @enduml
