@@ -15,7 +15,7 @@ class SingleTon:
 
 class T(SingleTon):
 
-    def __init__(self,age):
+    def __init__(self, age):
         self.age = age
 
 

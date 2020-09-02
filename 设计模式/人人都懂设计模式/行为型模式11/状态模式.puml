@@ -8,6 +8,7 @@ abstract class Context{
 + change_state(State):None
 + set_state_info(state_info):None
 + get_state_info():state_info
++ behavior():None
 }
 note bottom:上下文
 abstract class State{

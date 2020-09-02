@@ -1,0 +1,16 @@
+@startuml
+class User{
+-name:str
++get_name():str
++set_name(str):None
++send_message(str):None
++join_char_room(ChatRoom):None
+}
+note bottom:交互对象
+class ChatRoom{
+-name
++show_message(User,message)
+}
+note bottom:中介者
+User -> ChatRoom
+@enduml

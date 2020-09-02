@@ -30,7 +30,7 @@ class ObservableImpl(Observable):
         self._data = d
         if self._data == 100:
             mes = "水烧开了！！"
-        self.notify(f"{self}{mes}")
+            self.notify(f"{self}{mes}")
 
 
 class Observer(metaclass=ABCMeta):
