@@ -1,6 +1,5 @@
 """冒泡排序 n2 1 稳定"""
-
-import random
+from util import random_list
 
 
 def bubble(array):
@@ -10,12 +9,6 @@ def bubble(array):
             if array[j] > array[j + 1]:
                 array[j], array[j + 1] = array[j + 1], array[j]
     return array
-
-
-def random_list():
-    resp = [i for i in range(100)]
-    random.shuffle(resp)
-    return resp
 
 
 if __name__ == '__main__':
