@@ -5,7 +5,7 @@ import copy
 class Prototype:
 
     def clone(self, **attrs):
-        obj = copy.copy(self)
+        obj = copy.deepcopy(self)
         obj.__dict__.update(attrs)
         return obj
 
@@ -32,3 +32,4 @@ if __name__ == '__main__':
     b = a.clone()
     b.name.append(4)
     print(b.name)
+    print(a.name)

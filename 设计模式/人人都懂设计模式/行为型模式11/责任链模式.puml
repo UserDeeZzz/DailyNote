@@ -1,0 +1,24 @@
+@startuml
+abstract class Responsible{
+- _next_handler:Responsible
++ set_next_handler(ResponsibleImpl):None
++ get_next_handler():ResponsibleImpl
++ handle(Request):None
+}
+note bottom:责任链处理抽象类
+class ResponsibleImpl{
+}
+note bottom:责任链处理类
+ResponsibleImpl -|> Responsible
+class Requester{
+- responsible:ResponsibleImpl
++ set_responsible(ResponsibleImpl):None
++ send_request(Request):None
+}
+note bottom:请求者抽象类
+class RequesterImpl{
+}
+note bottom:请求者
+RequesterImpl -|>Requester
+RequesterImpl "handle by"-> ResponsibleImpl
+@enduml
