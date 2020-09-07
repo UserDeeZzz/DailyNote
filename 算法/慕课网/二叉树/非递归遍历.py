@@ -36,8 +36,8 @@ def post_order(tree):
         else:
             node = stack.pop(-1)
             current = node.left
-
-    print(output[-1::-1])
+    output.reverse()
+    print(output)
 
 
 if __name__ == '__main__':
