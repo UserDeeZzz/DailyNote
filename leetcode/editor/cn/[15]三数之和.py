@@ -18,39 +18,47 @@
 #  Related Topics 数组 双指针 
 #  👍 2562 👎 0
 
+from typing import List
+
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if not nums: return []
-
-        # 先排序，关键！
+        # 排序
         nums.sort()
-        ans = set()
-        N, target = 3, 0
-        self._find_sum(nums, 0, N, target, [], ans)
-        return list(ans)
+        # 求解n个数总和为0
+        return self.nSum(nums,3,0,[])
 
-    def _find_sum(self, nums, start, N, target, path, ans):
-        # terminator
-        if len(nums) < N or N < 2: return
-        # process
-        if N == 2:
-            # 两数求和
-            d = set()
-            for j in range(start, len(nums)):
-                if target - nums[j] in d:
-                    ans.add(tuple(path + [target - nums[j], nums[j]]))
-                else:
-                    d.add(nums[j])
+    def nSum(self, nums, n, target, path):
+        if len(nums) < n: return []
+        if n == 2:
+            cache = {}
+            for i, v in enumerate(nums):
+                if nums[i] > target:
+                    return []
+                idx = cache.get(target - v)
+                if idx is not None:
+                    return [[target - v, v]]
+                cache[v] = i
+            return []
         else:
-            for i in range(start, len(nums)):
-                # 剪枝1: target比剩余数字能组成的最小值还要小 或 比能组成的最大值还要大，就可以停止循环了
-                if target < nums[i] * N or target > nums[-1] * N: break
-                # 剪枝2: 去重
-                if i > start and nums[i] == nums[i - 1]: continue
-                # drill down
-                self._find_sum(nums, i + 1, N - 1, target - nums[i], path + [nums[i]], ans)
-        return
-
+            res = []
+            for i in range(len(nums)):
+                # 已经遍历过
+                if i in path:
+                    continue
+                # 已经大于target 后面就不可能等于
+                if nums[i] >= target:
+                    break
+                else:
+                    path.append(i)
+                    ans = self.nSum(nums[i + 1:], n - 1, target - nums[i], path)
+                    for a in ans:
+                        res.append([nums[i]]+a)
+            return res
 # leetcode submit region end(Prohibit modification and deletion)
+if __name__ == '__main__':
+    nums = [-1, 0, 1, 2, -1, -4]
+    o = Solution()
+    print(o.threeSum(nums))
