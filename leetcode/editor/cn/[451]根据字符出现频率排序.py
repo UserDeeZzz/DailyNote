@@ -56,10 +56,11 @@ class Solution:
         # @2
         cache = Counter(s)
         h = [(v, k) for k, v in cache.items()]
-        heapq.heapify(h)
+        # heapq.heapify(h)
+        h.sort()
         res = ""
-        for _ in range(len(h)):
-            i = heapq.heappop(h)
+        for i in h:
+            # i = heapq.heappop(h)
             res = i[1] * i[0] + res
         return res
 
