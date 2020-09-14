@@ -1,0 +1,24 @@
+@startuml
+class Client{
+}
+note bottom:客户端
+abstract class Subject{
++request()
+}
+note bottom:主题基类
+class ProxySubject{
+- _real_subject
++request()
++pre_request()
++after_request()
+}
+note bottom: 代理类
+class RealSubject{
++request()
+}
+note bottom: 真实主题
+Client --> Subject
+ProxySubject --|> Subject
+RealSubject --|> Subject
+ProxySubject -->RealSubject
+@enduml

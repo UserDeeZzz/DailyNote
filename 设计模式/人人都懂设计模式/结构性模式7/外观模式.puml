@@ -1,0 +1,27 @@
+@startuml
+class Client{
+}
+class Facade{
+}
+note left:系统
+class A{
+}
+note top:子系统A
+class B{
+}
+note top:子系统B
+
+class C{
+}
+note top:子系统C
+
+class D{
+}
+note top:子系统D
+
+A--*Facade
+B--*Facade
+C--*Facade
+D--*Facade
+Facade<--Client
+@enduml

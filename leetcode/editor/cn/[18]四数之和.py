@@ -30,13 +30,12 @@ class Solution:
         return self.nSum(nums, 4, target)
 
     def twoSum(self, nums, target):
-        cache = {}
+        cache = set()
         res = set()
-        for i, v in enumerate(nums):
-            idx = cache.get(target - v)
-            if idx is not None:
+        for v in nums:
+            if target - v in cache:
                 res.add((target - v, v))
-            cache[v] = i
+            cache.add(v)
         return [list(i) for i in res]
 
     def nSum(self, nums, n, target):
