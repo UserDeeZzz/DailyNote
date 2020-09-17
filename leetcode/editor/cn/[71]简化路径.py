@@ -52,5 +52,17 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        
+        stack = []
+        for char in (p for p in path.split('/') if p not in ('.', '')):
+            if char == '..':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(char)
+        return '/' + '/'.join(stack)
+
+
 # leetcode submit region end(Prohibit modification and deletion)
+if __name__ == '__main__':
+    o = Solution()
+    o.simplifyPath('/home/')
