@@ -39,7 +39,6 @@ class Solution:
     #     return ans
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         ans = []
-        if root is None: return ans
         stack = []
         while stack or root:
             if root is not None:
@@ -48,8 +47,19 @@ class Solution:
                 root = root.right
             else:
                 node = stack.pop()
-                if node.left:
-                    root = node.left
+                root = node.left
         return ans[::-1]
+
+
+    # def postorderTraversal(self, root: TreeNode) -> List[int]:
+    #     ans = []
+    #     stack = [root]
+    #     while stack:
+    #         node = stack.pop()
+    #         if isinstance(node, TreeNode):
+    #             stack.extend([node.val, node.right, node.left])
+    #         elif isinstance(node, int):
+    #             ans.append(node)
+    #     return ans
 
 # leetcode submit region end(Prohibit modification and deletion)
