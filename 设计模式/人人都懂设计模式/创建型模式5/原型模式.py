@@ -11,6 +11,13 @@ class Prototype:
 
 
 class PrototypeDispatcher:
+    """
+    >>> p1 = Prototype()
+    >>> dp = PrototypeDispatcher()
+    >>> dp.register("prototype1",p1)
+    >>> p2 = p1.clone()
+    >>> dp.register("prototype2",p2)
+    """
 
     def __init__(self):
         self.objects = {}
@@ -26,10 +33,6 @@ class PrototypeDispatcher:
 
 
 if __name__ == '__main__':
-    a = Prototype()
-    setattr(a, 'name', [1, 2, 3, [1, 2]])
-    print(a.name)
-    b = a.clone()
-    b.name.append(4)
-    print(b.name)
-    print(a.name)
+    import doctest
+
+    doctest.testmod()

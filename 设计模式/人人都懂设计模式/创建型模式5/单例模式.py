@@ -1,4 +1,3 @@
-"""doc string"""
 from threading import Lock
 
 
@@ -14,12 +13,19 @@ class SingleTon:
 
 
 class T(SingleTon):
+    """
+    >>> t1 = T(20)
+    >>> t2 = T(30)
+    >>> t1.age
+    30
+    """
 
-    def __init__(self, age):
+    def __init__(self, age, name=None):
         self.age = age
+        self.name = name
 
 
 if __name__ == '__main__':
-    t1 = T(20)
-    t2 = T(30)
-    print(t1.age)
+    import doctest
+
+    doctest.testmod()
