@@ -1,3 +1,8 @@
+"""
+复杂系统封装统一接口
+"""
+
+
 class Facade:
     def __init__(self):
         self.connector = Connector
