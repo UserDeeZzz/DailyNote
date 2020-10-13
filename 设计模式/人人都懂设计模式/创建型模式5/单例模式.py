@@ -8,7 +8,7 @@ class SingleTon:
         if not hasattr(cls, '_instance'):
             with cls._thread_lock:
                 if not hasattr(cls, '_instance'):
-                    cls._instance = super().__new__(cls)
+                    cls._instance = object.__new__(cls)
         return cls._instance
 
 

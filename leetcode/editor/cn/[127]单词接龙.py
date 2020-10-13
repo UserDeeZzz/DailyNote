@@ -42,9 +42,23 @@
 #  Related Topics 广度优先搜索 
 #  👍 440 👎 0
 
+from queue import Queue
+from collections import namedtuple
+
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        
+        q = Queue()
+        Item = namedtuple('Item', ('value', 'step'))
+        q.put(Item(beginWord,0))
+        visited = set()
+        alphas = 'abcdefghijklmnopqrstuvwxyz'
+        while not q.empty():
+            item = q.get()
+            for i in range(len(item.value)):
+                for alpha in alphas:
+                    ne= item.value[:i] + alpha + item.value[i:]:
+
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -455,3 +455,36 @@ def test_zip():
     from itertools import zip_longest
     assert list(zip_longest(x, y, fillvalue=0)) == [(1, 3), (2, 4), (3, 5), (0, 6)]
 
+
+def test_super():
+    """
+    返回一个代理对象，它会将方法调用委托给 type 的父类或兄弟类
+    解决多继承重复调用 c3算法
+    三种调用方式 1和2都是寻找当前self.__mro__中T的下一个类
+    super(T,self).__init__() # 1
+    super().__init__() # 2
+    super(T,T1).__init__() # 3
+    :return:
+    """
+
+    class A:
+        def fun(self):
+            print('A.fun')
+
+    class B(A):
+        def fun(self):
+            super().fun()
+            print('B.fun')
+
+    class C(A):
+        def fun(self):
+            super(C, self).fun()
+            print('C.fun')
+
+    class D(B, C):
+        def fun(self):
+            super().fun()
+            print('D.fun')
+
+    d = D()
+    d.fun()
